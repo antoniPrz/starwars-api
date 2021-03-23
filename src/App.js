@@ -1,10 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import injectContext from './store/appContext';
 import Navbar from './components/Navbar';
 import Details from './views/Details';
 import Home from './views/Home'
 
-export default function App() {
+ const  App = () => {
   return (
     <Router>
 			<Navbar/>
@@ -15,8 +16,11 @@ export default function App() {
 				<Route exact path="/">
 					<Home />
 				</Route>
-				<Route render={() => <h1>Not found</h1>} />
+				<Route render={() => <h1>404 Not found</h1>} />
 			</Switch>
 		</Router>
   )
 }
+
+
+export default injectContext(App);
