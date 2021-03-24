@@ -1,93 +1,120 @@
-import React, {useEffect, useContext} from 'react';
-import {Link} from 'react-router-dom';
-import {useParams} from 'react-router-dom';
-import {Context} from '../store/appContext';
+import React, { useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Context } from "../store/appContext";
+import "./Home.css";
 
 export default function Home() {
- 
-  const {name} = useParams();
-  const {store , actions } = useContext(Context);
+  const { name } = useParams();
+  const { store, actions } = useContext(Context);
 
-    useEffect(() => {
-        fetch("https://swapi.dev/api/people/")
-        .then(r => r.json())
-        .then(data => console.log(data))
-        .catch(error => console.log(error))
-      },[])
+  useEffect(() => {
+    actions.getPeople();
+  }, []);
 
-      useEffect(() => { 
-       actions.getPlanets();
-        
-      },[])
-
-      // store.swPlanets.forEach(element => {
-      //   console.log(element.name)
-      //   console.log(element.population)
-      // });
-
-       const planetaNames = store.swPlanets.map(element =>  element.name );
-     
-       console.log(planetaNames);
-
-      useEffect(() => {
-        fetch("https://swapi.dev/api/vehicles/")
-        .then(r => r.json())
-        .then(data => console.log(data))
-        .catch(error => console.log(error))
-      },[])
-
-
-
-
-
-
-
-    return (
-        <div className = 'container'>
-            <div className="card-deck">
-  <div className="card">
-    <img src="https://picsum.photos/id/1/400/200" className="card-img-top" alt="..."/>
-    <div className="card-body">
-      <h5 className="card-title">Card title</h5>
-      <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    
-      <Link to='/details' className="btn btn-primary">Details</Link>
-    </div>
-  </div>
-  <div className="card">
-    <img src="https://picsum.photos/id/1/400/200" className="card-img-top" alt="..."/>
-    <div className="card-body">
-      <h5 className="card-title">Card title</h5>
-      <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      
-      <Link to='/details' className="btn btn-primary">Details</Link>
-    </div>
-  </div>
-  <div className="card">
-    <img src="https://picsum.photos/id/1/400/200" className="card-img-top" alt="..."/>
-    <div className="card-body">
-      <h5 className="card-title">Card title</h5>
-      <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      
-      <Link to='/details' className="btn btn-primary">Details</Link>
-    </div>
-
-    {planetaNames.map(e => 
-      
-       <h1>{e}</h1>
-      
-      )}
-    
-  </div>
- 
+  useEffect(() => {
+    actions.getPlanets();
+  }, []);
   
- 
+  useEffect(() => {
+    actions.getVehicles();
+  }, []);
+
+  // store.swPlanets.forEach(element => {
+  //   console.log(element.name)
+  //   console.log(element.population)
+  // });
+
+  const planeta = store.swPlanets.map((element) => element);
+  const people = store.swPeople.map(e => e);
+  const vehicles = store.swVehicles.map(e => e);
+
+
+  console.log(vehicles);
   
-  
-  
-  
-  
-</div>
-        </div>
-    )
+
+  return (
+    <>
+      <h1>Planets</h1>
+      <div className=" container tarjeta  ">
+        {planeta.map((e, index) => (
+          <div className="card-deck carta ">
+            <div className="card mr-4 " key={index}>
+              <img
+                src="https://valenciaplaza.com/public/Image/2020/9/planeta_NoticiaAmpliada.jpg"
+                className="card-img-top"
+                alt="..."
+              />
+              <div className="card-body">
+                <h5 className="card-title">{e.name}</h5>
+                <p className="card-text">
+                  <b>rotation period:</b> {e.rotation_period} <br/>
+                  <b>Diameter: </b>{e.diameter} <br/>
+                  <b>Population: </b>{e.population} <br/>
+                  
+                </p>
+
+                <Link to="/details" className="btn btn-primary">
+                  Details
+                </Link>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <h1>People</h1>
+      <div className=" container tarjeta  ">
+        {people.map((e, index) => (
+          <div className="card-deck carta ">
+            <div className="card mr-4 " key={index}>
+              <img
+                src="https://cdn1-www.comingsoon.net/assets/uploads/2015/06/StarWarsRebels.png"
+                className="card-img-top"
+                alt="..."
+              />
+              <div className="card-body">
+                <h5 className="card-title">{e.name}</h5>
+                <p className="card-text">
+                  <b>Mass: </b> {e.mass} <br/>
+                  <b>Hair color: </b> {e.hair_color}<br/>
+                  <b>Gender: </b> {e.gender}
+                  
+                </p>
+
+                <Link to="/details" className="btn btn-primary">
+                  Details
+                </Link>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <h1>Vehicles</h1>
+      <div className=" container tarjeta  ">
+        {vehicles.map((e, index) => (
+          <div className="card-deck carta ">
+            <div className="card mr-4 " key={index}>
+              <img
+                src="https://i.ytimg.com/vi/ncTRcjIzCyw/hqdefault.jpg"
+                className="card-img-top"
+                alt="..."
+              />
+              <div className="card-body">
+                <h5 className="card-title">{e.name}</h5>
+                <p className="card-text">
+                <b>Model: </b>{e.model} <br/>
+                <b>Manufacturer: </b>{e.manufacturer} <br/>
+                <b>Passengers: </b>{e.passengers} <br/>
+                </p>
+
+                <Link to="/details" className="btn btn-primary">
+                  Details
+                </Link>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  );
 }

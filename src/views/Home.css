@@ -1,0 +1,30 @@
+.tarjeta{
+ max-height: 600px;
+ display: flex;
+overflow-x: auto;
+margin-top: 50px;
+margin-bottom: 50px;
+
+
+}
+
+.tarjeta::-webkit-scrollbar{
+  width: fit-content;
+}
+
+.carta {
+
+    min-width: 400px;
+    /* height: 600px; */
+  
+    
+}
+
+.sola{
+    margin-right: 100px;
+}
+
+h1{
+    text-align: center;
+    padding-top: 30px;
+}
