@@ -4,6 +4,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             swPeople: [],
 			swPlanets: [],
 			swVehicles: [],
+            planet:[],
+            people:[],
+            vehicle:[]
 		},
 		actions: {
 			 getPlanets : () => {
@@ -13,6 +16,10 @@ const getState = ({ getStore, getActions, setStore }) => {
                 .catch(error => console.log(error))
 
              },
+
+
+
+
 
              getPeople : () => {
                 fetch("https://swapi.dev/api/people/")

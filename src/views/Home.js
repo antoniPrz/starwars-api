@@ -5,7 +5,9 @@ import { Context } from "../store/appContext";
 import "./Home.css";
 
 export default function Home() {
-  const { name } = useParams();
+  // const { name } = useParams();
+
+
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
@@ -54,7 +56,7 @@ export default function Home() {
                   
                 </p>
 
-                <Link to="/details" className="btn btn-primary">
+                <Link to={`/planeta/${index+1}` }className="btn btn-primary">
                   Details
                 </Link>
               </div>

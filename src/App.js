@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import injectContext from './store/appContext';
 import Navbar from './components/Navbar';
-import Details from './views/Details';
+import Planeta from './views/planeta';
 import Home from './views/Home'
 
  const  App = () => {
@@ -10,8 +10,9 @@ import Home from './views/Home'
     <Router>
 			<Navbar/>
 			<Switch>
-				<Route exact path="/details">
-					<Details />
+				
+				<Route exact path="/planeta/:index">
+					<Planeta />
 				</Route>
 				<Route exact path="/">
 					<Home />

@@ -1,6 +1,31 @@
-import React from 'react'
+import React,{useEffect ,useContext,useState } from 'react'
+import {Context} from '../store/appContext'
+import {useParams} from 'react-router-dom'
 
 export default function Details() {
+
+  const { index } = useParams();
+  // console.log(index);
+  // const { store, actions } = useContext(Context);
+
+const [planeta, setplaneta] = useState([])
+
+
+  useEffect(() => {
+  
+    fetch(`https://swapi.dev/api/planets/${index}`)
+    .then(r => r.json())
+    .then(data => setplaneta(data))
+    .catch(error => console.log(error))
+  }, []);
+
+
+  // const dplaneta = planeta.map((element) => element);
+  // console.log(planeta);
+
+
+
+
     return ( 
         <div className= "container">
       <div className="card mb-3" >
@@ -10,7 +35,7 @@ export default function Details() {
     </div>
     <div className="col-md-8">
       <div className="card-body">
-        <h5 className="card-title">Card title</h5>
+        <h5 className="card-title">{planeta.name}</h5>
         <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
       </div>
