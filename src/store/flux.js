@@ -4,9 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             swPeople: [],
 			swPlanets: [],
 			swVehicles: [],
-            planet:[],
-            people:[],
-            vehicle:[]
+          
 		},
 		actions: {
 			 getPlanets : () => {

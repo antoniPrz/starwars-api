@@ -2,7 +2,7 @@ import React,{useEffect ,useContext,useState } from 'react'
 import {Context} from '../store/appContext'
 import {useParams} from 'react-router-dom'
 
-export default function Details() {
+export default function Planeta() {
 
   const { index } = useParams();
   // console.log(index);

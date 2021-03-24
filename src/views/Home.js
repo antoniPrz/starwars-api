@@ -56,7 +56,7 @@ export default function Home() {
                   
                 </p>
 
-                <Link to={`/planeta/${index+1}` }className="btn btn-primary">
+                <Link to={`/planeta/${index+1}`} className="btn btn-primary">
                   Details
                 </Link>
               </div>
@@ -83,7 +83,7 @@ export default function Home() {
                   
                 </p>
 
-                <Link to="/details" className="btn btn-primary">
+                <Link to={`/people/${index+1}`}className="btn btn-primary">
                   Details
                 </Link>
               </div>
@@ -109,7 +109,7 @@ export default function Home() {
                 <b>Passengers: </b>{e.passengers} <br/>
                 </p>
 
-                <Link to="/details" className="btn btn-primary">
+                <Link to={`/vehicles/${index+1}`} className="btn btn-primary">
                   Details
                 </Link>
               </div>
