@@ -1,5 +1,7 @@
+/* eslint-disable */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
+
 import React, { useEffect, useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Context } from '../store/appContext';
@@ -33,6 +35,10 @@ export default function Planeta() {
               <h5 className="card-title">{planeta.name}</h5>
               <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
               <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+              <p className="card-text">   </p>
+              <p className="card-text"> Tipo de terreno:  {planeta.terrain} </p>
+              <p className="card-text"> Tipo de Clima:  {planeta.climate} </p>
+              <p className="card-text"> Gravedad :  {planeta.gravity} </p>
             </div>
           </div>
         </div>
