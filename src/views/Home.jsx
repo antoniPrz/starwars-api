@@ -1,5 +1,7 @@
-/* eslint-disable react/no-array-index-key */
-import React, { useEffect, useContext } from 'react';
+/* eslint-disable */
+
+
+import React, { useEffect, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Context } from '../store/appContext';
@@ -7,6 +9,8 @@ import './Home.css';
 
 export default function Home() {
   // const { name } = useParams();
+
+  const [fav, setFav] = useState(true);
 
   const { store, actions } = useContext(Context);
 
@@ -34,10 +38,20 @@ export default function Home() {
   // eslint-disable-next-line no-console
   console.log(vehicles);
 
+
+  const addFavorite = () => {
+
+
+
+    setFav(!fav)
+    fav == false ? console.log("desactivado") : actions.addFavorites(list)
+  }
+
+
   return (
     <>
       <h1>Planets</h1>
-      <div className=" container tarjeta  ">
+      <div className=" container tarjeta">
         {planeta.map((e, index) => (
           <div className="card-deck carta ">
             <div className="card mr-4 " key={index}>
@@ -142,7 +156,17 @@ export default function Home() {
                 <Link to={`/vehicles/${index + 1}`} className="btn btn-primary">
                   Details
                 </Link>
-                <a href="#!n" className="btn btn-outline-warning">♥</a>
+
+
+
+                <button
+
+                  type="button"
+                  className="btn btn-outline-warning"
+                  onClick={() => addFavorite()}
+
+
+                >♥</button>
               </div>
             </div>
           </div>
