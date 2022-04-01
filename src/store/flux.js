@@ -29,9 +29,16 @@ const getState = ({ getStore, getActions, setStore }) => ({
         .then((data) => setStore({ swVehicles: data.results }))
         .catch((error) => console.log(error));
     },
-    addFavorites: (list) => {
+    addFavorites: (favElement) => {
       const store = getStore();
-      setStore({ favoritesList: store.favoritesList.concat({ "name": list.name, "uid": list.uid }) });
+      setStore({ favoritesList: store.favoritesList.concat({ "name": favElement.name,  }) });
+    },
+
+    deleteFavorite: (favElement)=>{
+      const store = getStore();
+      const newFav = store.favoritesList.filter(element=> element.name !== favElement.name)
+      setStore({favoritesList:newFav });
+      
     }
 
 
