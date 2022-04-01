@@ -1,20 +1,14 @@
 /* eslint-disable */
 
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import { Context } from '../store/appContext';
 
 export default function Navbar() {
   const { store, actions } = useContext(Context);
-
   const { favoritesList } = store;
-
-  // const { deleteFavorite } = actions;
-
-  const delFavorite = (element) => {
-    actions.deleteFavorite(element);
-  };
+  const { removeFavorite } = actions;
 
   return (
     <div className=' d-flex justify-content-around align-items-center'>
@@ -31,13 +25,13 @@ export default function Navbar() {
           data-bs-toggle='dropdown'
           aria-expanded='false'
         >
-          Fav list
+          Favorites
         </button>
         <ul class='dropdown-menu dropdown-menu-end'>
-          {store.favoritesList.map((element) => (
+          {favoritesList.map((element) => (
             <li class='dropdown-item' type='button'>
               {element.name}
-              <button onClick={() => delFavorite(element)}>X</button>
+              <button onClick={() => removeFavorite(element)}>X</button>
             </li>
           ))}
         </ul>

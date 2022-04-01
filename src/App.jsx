@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import injectContext from './store/appContext';
@@ -11,17 +12,16 @@ const App = () => (
   <Router>
     <Navbar />
     <Switch>
-
-      <Route exact path="/people/:index">
+      <Route exact path='/people/:index'>
         <People />
       </Route>
-      <Route exact path="/vehicles/:index">
+      <Route exact path='/vehicles/:index'>
         <Vehicles />
       </Route>
-      <Route exact path="/planeta/:index">
+      <Route exact path='/planeta/:index'>
         <Planeta />
       </Route>
-      <Route exact path="/">
+      <Route exact path='/'>
         <Home />
       </Route>
       <Route render={() => <h1>404 Not found</h1>} />

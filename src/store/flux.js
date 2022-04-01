@@ -2,9 +2,9 @@
 /* eslint-disable no-console */
 const getState = ({ getStore, getActions, setStore }) => ({
   store: {
-    swPeople: [],
-    swPlanets: [],
-    swVehicles: [],
+    starWarsPeople: [],
+    starWarsPlanets: [],
+    starWarsVehicles: [],
     favoritesList: [],
 
   },
@@ -12,29 +12,29 @@ const getState = ({ getStore, getActions, setStore }) => ({
     getPlanets: () => {
       fetch('https://swapi.dev/api/planets/')
         .then((r) => r.json())
-        .then((data) => setStore({ swPlanets: data.results }))
+        .then((data) => setStore({ starWarsPlanets: data.results }))
         .catch((error) => console.log(error));
     },
 
     getPeople: () => {
       fetch('https://swapi.dev/api/people/')
         .then((r) => r.json())
-        .then((data) => setStore({ swPeople: data.results }))
+        .then((data) => setStore({ starWarsPeople: data.results }))
         .catch((error) => console.log(error));
     },
 
     getVehicles: () => {
       fetch('https://swapi.dev/api/vehicles/')
         .then((r) => r.json())
-        .then((data) => setStore({ swVehicles: data.results }))
+        .then((data) => setStore({ starWarsVehicles: data.results }))
         .catch((error) => console.log(error));
     },
-    addFavorites: (favElement) => {
+    addFavorite: (favElement) => {
       const store = getStore();
       setStore({ favoritesList: store.favoritesList.concat({ "name": favElement.name,  }) });
     },
 
-    deleteFavorite: (favElement)=>{
+    removeFavorite: (favElement)=>{
       const store = getStore();
       const newFav = store.favoritesList.filter(element=> element.name !== favElement.name)
       setStore({favoritesList:newFav });

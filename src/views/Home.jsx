@@ -1,48 +1,29 @@
 /* eslint-disable */
-
 import React, { useEffect, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Card from '../components/Card';
 
 import { Context } from '../store/appContext';
 import './Home.css';
 
 export default function Home() {
-  // const { name } = useParams();
-
-  const [fav, setFav] = useState(true);
-
   const { store, actions } = useContext(Context);
-
-  const { favoritesList } = store;
+  const { starWarsPlanets, starWarsPeople, starWarsVehicles, favoritesList } =
+    store;
+  const { removeFavorite, addFavorite, getPeople, getPlanets, getVehicles } =
+    actions;
 
   useEffect(() => {
-    actions.getPeople();
-    actions.getPlanets();
-    actions.getVehicles();
+    getPeople();
+    getPlanets();
+    getVehicles();
   }, []);
-
-  const planeta = store.swPlanets.map((element) => element);
-  const people = store.swPeople.map((e) => e);
-  const vehicles = store.swVehicles.map((e) => e);
-
-  // eslint-disable-next-line no-console
-
-  const addFavorite = (element) => {
-    actions.addFavorites(element);
-
-    // setFav(!fav);
-    // fav == false ? console.log('desactivado') : actions.addFavorites(list);
-  };
-
-  const delFavorite = (element) => {
-    actions.deleteFavorite(element);
-  };
 
   return (
     <>
       <h1>Planets</h1>
       <div className=' container tarjeta'>
-        {planeta.map((e, index) => (
+        {starWarsPlanets.map((e, index) => (
           <div className='card-deck carta '>
             <div className='card mr-4 ' key={index}>
               <img
@@ -63,9 +44,23 @@ export default function Home() {
                 <Link to={`/planeta/${index + 1}`} className='btn btn-primary'>
                   Details
                 </Link>
-                <a href='#!' className='btn btn-outline-warning'>
-                  ♥
-                </a>
+                {favoritesList.find((element) => element.name == e.name) ? (
+                  <button
+                    type='button'
+                    className='btn btn-outline-warning active'
+                    onClick={() => removeFavorite(e)}
+                  >
+                    ♥
+                  </button>
+                ) : (
+                  <button
+                    type='button'
+                    className='btn btn-outline-warning '
+                    onClick={() => addFavorite(e)}
+                  >
+                    ♥
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -73,7 +68,7 @@ export default function Home() {
       </div>
       <h1>People</h1>
       <div className=' container tarjeta  '>
-        {people.map((e, index) => (
+        {starWarsPeople.map((e, index) => (
           <div className='card-deck carta '>
             <div className='card mr-4 ' key={index}>
               <img
@@ -93,9 +88,23 @@ export default function Home() {
                 <Link to={`/people/${index + 1}`} className='btn btn-primary'>
                   Details
                 </Link>
-                <a href='#!' className='btn btn-outline-warning'>
-                  ♥
-                </a>
+                {favoritesList.find((element) => element.name == e.name) ? (
+                  <button
+                    type='button'
+                    className='btn btn-outline-warning active'
+                    onClick={() => removeFavorite(e)}
+                  >
+                    ♥
+                  </button>
+                ) : (
+                  <button
+                    type='button'
+                    className='btn btn-outline-warning '
+                    onClick={() => addFavorite(e)}
+                  >
+                    ♥
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -104,7 +113,7 @@ export default function Home() {
 
       <h1>Vehicles</h1>
       <div className=' container tarjeta  '>
-        {vehicles.map((e, index) => (
+        {starWarsVehicles.map((e, index) => (
           <div className='card-deck carta '>
             <div className='card mr-4 ' key={index}>
               <img
@@ -130,7 +139,7 @@ export default function Home() {
                   <button
                     type='button'
                     className='btn btn-outline-warning active'
-                    onClick={() => delFavorite(e)}
+                    onClick={() => removeFavorite(e)}
                   >
                     ♥
                   </button>
@@ -148,6 +157,12 @@ export default function Home() {
           </div>
         ))}
       </div>
+      <h1>Vehicles 2</h1>
+      {/* <div className=' container tarjeta  '>
+        {starWarsVehicles.map((element, index) => (
+          <Card {...element} saludo='hola' index={index} />
+        ))}
+      </div> */}
     </>
   );
 }
