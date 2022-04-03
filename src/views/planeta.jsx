@@ -15,6 +15,7 @@ export default function Planeta() {
 
   return (
     <div className='container'>
+      <h1 className='m-5 bg-red'>{planeta.name}</h1>
       <div className='card mb-3'>
         <div className='row no-gutters'>
           <div className='col-md-4'>

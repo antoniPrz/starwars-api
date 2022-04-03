@@ -6,13 +6,13 @@
   margin-bottom: 50px;
 }
 
-.tarjeta::-webkit-scrollbar {
+/* .tarjeta::-webkit-scrollbar {
   width: fit-content;
-}
+} */
 
 .carta {
   min-width: 400px;
-  height: 600px;
+  /* height: 600px; */
 }
 
 .sola {

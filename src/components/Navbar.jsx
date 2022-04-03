@@ -11,27 +11,33 @@ export default function Navbar() {
   const { removeFavorite } = actions;
 
   return (
-    <div className=' d-flex justify-content-around align-items-center'>
+    <div className=' d-flex justify-content-around align-items-center fixed-top bg-dark mb-5'>
       <nav className='navbar navbar-light bg-light'>
         <Link className='navbar-brand' href='#!' to='/'>
           StarWars
         </Link>
       </nav>
 
-      <div class='btn-group'>
+      <div className='btn-group'>
         <button
           type='button'
-          class='btn btn-warning dropdown-toggle'
+          className='btn btn-warning dropdown-toggle'
           data-bs-toggle='dropdown'
           aria-expanded='false'
         >
-          Favorites
+          {`Favorites ${favoritesList.length}`}
         </button>
-        <ul class='dropdown-menu dropdown-menu-end'>
-          {favoritesList.map((element) => (
-            <li class='dropdown-item' type='button'>
+        <ul className='dropdown-menu dropdown-menu-end flex-column justify-content-between'>
+          {favoritesList.map((element, index) => (
+            <li
+              className='dropdown-item d-flex justify-content-between align-items-center'
+              type='button'
+              key={index}
+            >
               {element.name}
-              <button onClick={() => removeFavorite(element)}>X</button>
+              <button className='btn' onClick={() => removeFavorite(element)}>
+                X
+              </button>
             </li>
           ))}
         </ul>

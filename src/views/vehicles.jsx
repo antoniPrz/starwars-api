@@ -16,7 +16,8 @@ export default function Vehicles() {
   console.log(vehicle);
 
   return (
-    <div className='container'>
+    <div className='container '>
+      <h1 className='m-5 bg-red'>{vehicle.name}</h1>
       <div className='card mb-3'>
         <div className='row no-gutters'>
           <div className='col-md-4'>
